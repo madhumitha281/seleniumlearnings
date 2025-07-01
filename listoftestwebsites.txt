@@ -1,0 +1,10 @@
+https://the-internet.herokuapp.com/   --  For basic element interactions
+https://toolsqa.com/   ---- Form Handling
+https://candymapper.com/  --- web UI
+https://the-internet.herokuapp.com/dynamic_loading  - scenarios where elements appear after a certain delay
+https://www.saucedemo.com/  --- online shop simulation
+https://www.demoblaze.com/  -- Ecommerce
+https://the-internet.herokuapp.com/upload - file upload
+https://formy-project.herokuapp.com/ -  form handling
+https://the-internet.herokuapp.com/floating_menu   --  floating menu
+
