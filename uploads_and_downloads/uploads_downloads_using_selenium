@@ -1,1 +1,36 @@
+import time
+from selenium import webdriver
+from selenium.webdriver.common.by import By
+from selenium.webdriver.chrome.service import Service
+from selenium.webdriver.support.wait import WebDriverWait
+from webdriver_manager.chrome import ChromeDriverManager
+from selenium.webdriver.support import expected_conditions as EC
+
+#step-1: start chrome driver
+driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()))
+
+WebDriverWait(driver,5).until(EC.presence_of_element_located((By.TAG_NAME,"body")))
+
+driver.get("https://rahulshettyacademy.com/upload-download-test/index.html")
+
+#step-2: To downlaod the excel, locate the download button using Locators
+d_btn = driver.find_element(By.CSS_SELECTOR,".button")
+d_btn.click()  #Excel file will download to the default loaction
+
+#step-3: Now we need to edit the excel file using openpyxl
+#open excel -> update specific cell value -> save the file
+
+
+#step-4: After editing the file you need to upload the file.
+# but upload dialog boxes are OS-level popups - Selenium can't handle them directly
+#because selenium can't handle the windows, it can only handle the browser
+#then how to upload?
+#Selenium has feature to upload if the <input type='file'> element present on the page when you inspect the upload button
+
+#locate the file input using css:
+#<input type="file" id="fileinput" accept=".xlsx,.xlx" class="upload">
+file_input = driver.find_element(By.CSS_SELECTOR,"input[type='file']")
+#now upload the file_path using send keys:
+file_input.send_keys("r'C:\Users\2136969\OneDrive - Cognizant\Desktop\python Practise\21\Selenium projects\download.xlsx'")
+
 
