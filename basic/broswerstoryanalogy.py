@@ -1,3 +1,5 @@
+#Task: enter text - give search
+
 import time
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
@@ -5,41 +7,33 @@ from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.common.by import By
 
 
-#installing browser driver 
+#first browser install panrom.
 chromeservice = Service(ChromeDriverManager().install())
 driver = webdriver.Chrome(service=chromeservice)
-#I need to open the browser to start the session!
-# Removed duplicate driver line to avoid confusion
-#to open the webpage, use get() method and give the link!
+
+#get() method use panni website open panrom
 driver.get("https://www.bing.com/")
 
-#Get the browser information like alerts, cookies, sites..etc
-headline = driver.title 
-print(headline) #this prints the title of the page
-time.sleep(2)
-#find the element (lcoaters and page elements like button, text..etc)
-#this is the html code for the webpage we are using!
-#for textbox, when you give inspect!
+#driver.title => page title print panrom, like bing, google..etc
+print(driver.title) 
+
+#textbox kitta inspect kudutha, html code irukum like this below,
 #<input class="sb_form_q" type="search" name="q" id="sb_form_q" maxlength="1000" />
+
+#locators (like ID,NAME...) use panni element find panitu, adhula text enter panrom.
 fill_me = driver.find_element(By.ID, value = "sb_form_q")
-time.sleep(2)
-#for Bing search button
+fill_me.send_keys("cat")  #.send_keys => for entering text
+
+#search button locator find panrom, click action pannrom.
 #<label for="search_icon" class="search icon tooltip"><input id="search_icon" class="search icon tooltip" type="submit" aria-label="Search" />
 search_button = driver.find_element(By.ID, value = "search_icon")
-time.sleep(2)
-
-#Take actions on the elements
-fill_me.send_keys("cat")
-time.sleep(2)
 search_button.click()
-time.sleep(1.5)
 
-#To check if the action you made got the response,
-#Example title from search result
+#Search panna aprom result vandhucha nu check panna
 text_inside = driver.find_element(By.CLASS_NAME, "b_algo")
 print(text_inside.text)
 
-#you can use import time and time.sleep() for seeing the actions clearly!
-time.sleep(5)
-#to quit()
+#import time and time.sleep() => epdi automation nadakudhu nu konjam slow ah paaka idhu use aagum.
+time.sleep(3)
+#After use, browser ah full close panna quit() use panrom.
 driver.quit()
